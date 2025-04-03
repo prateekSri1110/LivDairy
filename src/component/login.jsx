@@ -16,7 +16,10 @@ const Login = () => {
                     <input className="form-control mb-2" type="phone" id="number" placeholder="+91 ***** *****" />
                     <input className="form-control" type="OTP" id="address" placeholder="OTP" disabled />
                     <br />
-                    <button className="btn btn-primary">LOGIN</button>
+                    <button className="btn btn-primary" onClick={(e) => {
+                        e.preventDefault();
+                        navigate('/menu');
+                    }}>LOGIN</button>
                     <br /><br />
                     NEW USER /
                     <a className='text-decoration-none' href="#" onClick={(e) => {

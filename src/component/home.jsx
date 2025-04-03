@@ -1,6 +1,8 @@
 import CardCarousel from "./card";
 import Navbar from "./navbar";
-import main from '../assets/mainn.png'
+import Table from './table';
+import main from '../assets/mainn.png';
+import Footer from "./footer";
 
 const Menu = () => {
     return (
@@ -12,6 +14,9 @@ const Menu = () => {
                 <span className="liner">Fixing Health</span>
             </div>
             <CardCarousel />
+            <hr />
+            <Table />\
+            <Footer />
         </>
     );
 }

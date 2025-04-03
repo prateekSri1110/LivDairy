@@ -38,7 +38,7 @@ const CardCarousel = () => {
     return (
         <>
             <div className="container carousel-container">
-                <h4 className="mb-2">Price List</h4>
+                <h4 className="mb-2">Product & Price</h4>
                 <Slider {...settings}>
                     {cards.map((card, index) => (
                         <div key={index} className="card p-3 border rounded shadow-sm">
