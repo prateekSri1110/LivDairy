@@ -34,7 +34,7 @@ export default function Footer() {
 
                             <ul className="list-unstyled">
                                 <li>
-                                    <p>Indira Nagar, Lucknow, Uttar Pradesh</p>
+                                    <p>B-43 Sant, Rk Puram Colony Rd, Indira Nagar, Lucknow, Uttar Pradesh 226028</p>
                                 </li>
                                 <li>
                                     <p>+91-**********</p>
