@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const Table = () => {
     const menuItems = [
@@ -17,13 +19,44 @@ const Table = () => {
     const [selectedItems, setSelectedItems] = useState([]);
 
     const handleQuantityChange = (id, value) => {
-        setQuantities({ ...quantities, [id]: value });
+        setQuantities({ ...quantities, [id]: Number(value) });
     };
 
     const handleCheckboxChange = (id) => {
         setSelectedItems((prev) =>
             prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
         );
+    };
+
+    const navigate = useNavigate();
+
+    // Function to send data to MongoDB
+    const handleAddToCart = async (e) => {
+        e.preventDefault();
+
+        // Filter selected items and format them for the backend
+        const cartItems = menuItems
+            .filter(item => selectedItems.includes(item.id))
+            .map(item => ({
+                title: item.title,
+                price: item.Price,
+                quantity: quantities[item.id]
+            }));
+
+        if (cartItems.length === 0) {
+            alert("Please select at least one item.");
+            return;
+        }
+
+        try {
+            const response = await axios.post("http://localhost:4080/cart", { items: cartItems });
+            alert("Items added to cart successfully!");
+            console.log(response.data);
+            navigate('/cart'); // Redirect to cart page
+        } catch (error) {
+            console.error("Error adding to cart:", error);
+            alert("Failed to add items to cart.");
+        }
     };
 
     return (
@@ -70,7 +103,9 @@ const Table = () => {
                     ))}
                 </tbody>
             </table>
-            <button className="btn btn-primary w-75 mb-3">ORDER</button>
+            <button className="btn btn-primary w-75 mb-3" onClick={handleAddToCart}>
+                Add to Cart
+            </button>
         </div>
     );
 };
